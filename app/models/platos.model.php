@@ -45,6 +45,10 @@ class PlatosModel{
         
         return $platos;
     }
-
+    function insertarPlato($nombre, $precio, $categoria){
+        $query = $this->db->prepare('INSERT INTO platos (nombre_plato, precio, id_categoria) VALUES (?,?,?)'); 
+        $query->execute([$nombre, $precio, $categoria]);
+        return $this->db->lastInsertId();
+    }
 
 }
