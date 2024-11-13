@@ -50,5 +50,12 @@ class PlatosModel{
         $query->execute([$nombre, $precio, $categoria]);
         return $this->db->lastInsertId();
     }
-
+    function borrarPlato($id) {
+        $query = $this->db->prepare('DELETE FROM platos WHERE id_plato = ?');
+        $query->execute([$id]);
+    }
+    function editarPlato($id,$nombre,$precio,$cat){
+        $query = $this->db->prepare('UPDATE platos SET nombre_plato = ?, precio = ?, id_categoria = ? WHERE id_plato = ?');
+        $query->execute([$id,$nombre, $precio, $cat]);
+    }
 }
