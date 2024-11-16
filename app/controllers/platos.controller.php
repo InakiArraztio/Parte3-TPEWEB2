@@ -10,6 +10,9 @@ class PlatosApiController{
         $this->view = new JSONView();
     }
     public function getAll($req, $res) {
+        if(!$res->user) {
+            return $this->view->response("No autorizado", 401);
+        }
         $filtrarCategoria = null;
         // obtengo las tareas de la DB
         if(isset($req->query->filtrarCategoria)) {
