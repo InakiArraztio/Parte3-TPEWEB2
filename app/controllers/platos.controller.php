@@ -25,13 +25,13 @@ class PlatosApiController{
         $pagina=null;
         if(isset($req->query->pagina)){
             $pagina=$req->query->pagina;
-            
+            $limite=5;
             if($pagina==1){
                 $paginaContador=0;
             }else{
-                $paginaContador=$pagina;
+                $i=$pagina-1;
+                $paginaContador=$limite*$i;
             }
-            $limite=5;
             $limite*=$pagina;
             if($limite>count($platos)){
                 $limite=1-count($platos);
