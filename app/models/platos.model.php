@@ -9,7 +9,7 @@ class PlatosModel{
         return new PDO('mysql:host=localhost;dbname=restaurante;charset=utf8', 'root', '');
      }
 
-    public function getPlatos($filtrarCateogria = null, $orderBy = false) {
+    public function getPlatos($filtrarCateogria = null, $orderBy = false,$order = false) {
         $sql = 'SELECT * FROM platos';
         if($filtrarCateogria!= null) {
             
@@ -26,6 +26,17 @@ class PlatosModel{
                     break;
             }
         }
+        if($order) {
+            switch($order) {
+                case 'ascendente':
+                    $sql .= ' ASC';
+                    break;
+                case 'descendente':
+                    $sql .= ' DESC';
+                    break;
+            }
+        }
+
         // 2. Ejecuto la consulta
         $query = $this->db->prepare($sql);
         $query->execute();

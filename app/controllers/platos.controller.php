@@ -18,12 +18,16 @@ class PlatosApiController{
         if(isset($req->query->filtrarCategoria)) {
             $filtrarCategoria = $req->query->filtrarCategoria;
         }
+        $order = false;
+        if(isset($req->query->order))
+        $order = $req->query->order;
+           
         
         $orderBy = false;
         if(isset($req->query->orderBy))
             $orderBy = $req->query->orderBy;
 
-        $platos = $this->model->getPlatos($filtrarCategoria,$orderBy );
+        $platos = $this->model->getPlatos($filtrarCategoria,$orderBy,$order );
         $platosPaginado=[];
         $pagina=null;
         if(isset($req->query->pagina)){
